@@ -9,5 +9,9 @@ Libraries
  * pylab
  * scipy
  * numpy
- * pandas
+ * pandas 
+ 
+Output
+------
+![Plots](https://raw.github.com/napsternxg/meshterm-curve-fitting/master/HIV.png)
 
