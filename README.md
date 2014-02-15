@@ -9,8 +9,7 @@ Libraries
  * pylab
  * scipy
  * numpy
- * pandas
- * 
+ * pandas 
  
 Output
 ------
