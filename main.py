@@ -6,15 +6,30 @@ import numpy as np
 from scipy import interpolate, optimize
 import math
 
-df = pd.read_csv("HIV.tsv",sep="\t",index_col="Year")
+filename = None
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description="Create Plots for Mesh Term\
+                                     Data")
+    parser.add_argument("-f",help="Name of file to get data from. Should\
+                        contain\
+                        2 columns only seperated by tab. Year and Count")
+    args = parser.parse_args()
+    global filename
+    filename = args.f
+    if filename == None:
+        print parser.print_help()
+        exit(-1)
+    
+df = pd.read_csv(filename,sep="\t",index_col="Year")
 column_names = ["y"]
 index_names = ["x"]
 df.index.names = index_names
 
 df.columns = column_names
 df.y = df.y.apply(lambda y: math.log(y)+1)
-min_year = 1970
-max_year = 2014
+min_year = df.index[0] - 5
+max_year = df.index[-1] -1
 x = range(min_year,max_year)
 x1 = range(0,max_year-min_year)
 y = [0 if i not in df.y else df.y[i] for i in x]
@@ -59,7 +74,7 @@ pl.subplot(4,1,1)
 pl.plot(x,y,"o",markersize=10,label="Data Points")
 pl.plot(x,r,"-",label="Cubic Spline Interpolation")
 pl.legend(loc="best")
-pl.title("Curve fitting for HIV MeshTerm")
+pl.title("Curve fitting for MeshTerm")
 pl.xlabel("Year")
 pl.ylabel("log(TotalCount)")
 
