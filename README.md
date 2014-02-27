@@ -15,3 +15,5 @@ Output
 ------
 ![Plots](https://raw.github.com/napsternxg/meshterm-curve-fitting/master/HIV.png)
 
+![Plots](https://raw.github.com/napsternxg/meshterm-curve-fitting/master/HIV_Normalized.png)
+
